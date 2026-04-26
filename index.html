@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="wrapper">
+        <div class="envelope" id="envelope">
+            <div class="front">
+                <div class="wax-seal" onclick="openInvitation()">
+                    <img src="https://i.postimg.cc/85zXq4vD/wax-seal-red.png" alt="Seal">
+                </div>
+                <p class="invite-text">You are invited</p>
+            </div>
+        </div>
+
+        <div class="content hidden" id="mainContent">
+            <img src="https://i.postimg.cc/XNzq3WZW/file-000000002f9871f4beb2f36b81dfad9f.png" alt="Main Banner" class="banner-img">
+
+            <header>
+                <h1 class="names">Alex & Diane</h1>
+                <p class="date">22 November 2026</p>
+            </header>
+
+            <div class="details">
+                <h3>Notre Histoire</h3>
+                <p>2020 - Our encounter began...</p>
+                
+                <hr>
+                
+                <h3>Location</h3>
+                <p>Mairie du 19ème arrondissement</p>
+                <a href="https://maps.app.goo.gl/8Pj9mbeQQf2bVAgf8" target="_blank" class="map-button">
+                    📍 View on Google Maps
+                </a>
+            </div>
+
+            <section class="rsvp">
+                <a href="#" class="rsvp-button">Confirm Presence (RSVP)</a>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
