@@ -1,101 +1,94 @@
 body {
-    margin: 0;
-    padding: 0;
     background-color: #f4f1ea;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    font-family: 'Playfair Display', serif;
+    height: 100vh;
+    margin: 0;
     overflow: hidden;
 }
 
-.wrapper {
-    width: 90%;
-    max-width: 400px;
-    height: 85vh;
+.envelope-wrapper {
     position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #d4e4bc; /* စာအိတ်အရောင် */
 }
 
-/* စာအိတ် အစိမ်းရောင် Design */
 .envelope {
+    position: relative;
     width: 100%;
     height: 100%;
-    background-color: #d4e4bc;
-    background-image: url('https://www.transparenttextures.com/patterns/pinstriped-suit.png'); /* Texture အနည်းငယ် */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid #b7c99a;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* စာအိတ်အဖုံး (Flap) */
+.flap {
     position: absolute;
-    z-index: 10;
-    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #c4d4ac; /* အဖုံးအရောင် */
+    transform-origin: top;
+    z-index: 3;
+    transition: transform 0.6s ease;
 }
 
-.wax-seal {
-    width: 90px;
-    cursor: pointer;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-    transition: transform 0.3s;
+.front {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid #d4e4bc;
+    border-right: 150px solid #d4e4bc;
+    border-bottom: 100px solid #c4d4ac;
+    z-index: 4;
 }
 
-.wax-seal:hover { transform: scale(1.1); }
-
-.invite-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
-    color: #4a5d23;
-    margin-top: 20px;
-}
-
-/* အထဲက ဖိတ်စာ Content */
-.content {
+/* အထဲက စာရွက် (Letter) */
+.letter {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 280px;
+    height: 180px;
     background: white;
-    height: 100%;
-    overflow-y: auto;
-    border-radius: 5px;
+    z-index: 2;
+    transition: transform 1s ease 0.6s, height 1s ease 0.6s;
+    padding: 10px;
+    box-sizing: border-box;
     text-align: center;
-    opacity: 0;
-    padding-bottom: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.banner-img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px 5px 0 0;
+.letter img.banner { width: 100%; height: auto; margin-bottom: 10px; }
+
+/* Animation အလုပ်လုပ်ပုံ */
+.open .flap {
+    transform: rotateX(180deg); /* အဖုံးလှန်လိုက်တာ */
+    z-index: 1;
 }
 
-.hidden { display: none; }
-
-.names {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.8rem;
-    color: #a12c2c;
-    margin: 20px 0;
+.open .letter {
+    transform: translateY(-150px); /* စာရွက် အပေါ်တက်လာတာ */
+    height: 350px; /* စာရွက် အရှည်ကြီး ဖြစ်သွားမယ် */
+    z-index: 5;
 }
 
-.details { padding: 0 20px; color: #555; }
-
-.map-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #f8f9fa;
-    color: #333;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    margin: 15px 0;
+/* Wax Seal */
+.wax-seal {
+    position: absolute;
+    top: 80px;
+    left: 125px;
+    width: 50px;
+    z-index: 10;
+    cursor: pointer;
+    transition: opacity 0.5s;
 }
 
-.rsvp-button {
-    display: inline-block;
-    padding: 15px 40px;
-    background: #a12c2c;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-    margin-top: 10px;
-}
+.open .wax-seal { opacity: 0; pointer-events: none; }
+
+/* မြန်မာစာနဲ့ Design စာသားများ */
+.names { font-size: 1.5rem; color: #a12c2c; margin: 5px 0; }
+.map-btn { font-size: 0.8rem; text-decoration: none; color: blue; }
