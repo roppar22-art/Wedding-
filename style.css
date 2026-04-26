@@ -6,13 +6,20 @@ body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    position: relative;
+    top: 50px; /* စာရွက်တက်လာဖို့ နေရာချန်ထားတာ */
 }
 
 .envelope-wrapper {
     position: relative;
-    width: 300px;
-    height: 200px;
-    background-color: #d4e4bc; /* စာအိတ်အရောင် */
+    width: 320px;
+    height: 220px;
+    background-color: #d4e4bc; /* Video ထဲကလို အစိမ်းဖျော့ */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .envelope {
@@ -21,74 +28,103 @@ body {
     height: 100%;
 }
 
-/* စာအိတ်အဖုံး (Flap) */
+/* အပေါ်က အဖုံး */
 .flap {
     position: absolute;
     top: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-top: 100px solid #c4d4ac; /* အဖုံးအရောင် */
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 110px solid #c4d4ac;
     transform-origin: top;
     z-index: 3;
     transition: transform 0.6s ease;
 }
 
+/* စာအိတ် အောက်ခြေကွက် */
 .front {
     position: absolute;
     bottom: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid #d4e4bc;
-    border-right: 150px solid #d4e4bc;
-    border-bottom: 100px solid #c4d4ac;
+    border-left: 160px solid #d4e4bc;
+    border-right: 160px solid #160px solid #d4e4bc; /* Correction for visual triangle */
+    border-bottom: 110px solid #c4d4ac;
     z-index: 4;
+}
+
+.front::after {
+    content: '';
+    position: absolute;
+    bottom: -110px;
+    left: -160px;
+    width: 320px;
+    height: 110px;
+    background-color: #d4e4bc;
+    z-index: -1;
 }
 
 /* အထဲက စာရွက် (Letter) */
 .letter {
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     left: 10px;
-    width: 280px;
-    height: 180px;
+    width: 300px;
+    height: 200px;
     background: white;
     z-index: 2;
     transition: transform 1s ease 0.6s, height 1s ease 0.6s;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
-.letter img.banner { width: 100%; height: auto; margin-bottom: 10px; }
+.banner {
+    width: 100%;
+    border-radius: 4px;
+}
 
-/* Animation အလုပ်လုပ်ပုံ */
+/* စာသားများ */
+.names { color: #a12c2c; margin: 15px 0 10px; font-size: 1.4rem; }
+.date, .time, .location { font-size: 0.9rem; margin: 5px 0; color: #444; }
+
+.map-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background: #a12c2c;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Animation အလုပ်လုပ်ချိန် (Open state) */
 .open .flap {
-    transform: rotateX(180deg); /* အဖုံးလှန်လိုက်တာ */
+    transform: rotateX(180deg);
     z-index: 1;
 }
 
 .open .letter {
-    transform: translateY(-150px); /* စာရွက် အပေါ်တက်လာတာ */
-    height: 350px; /* စာရွက် အရှည်ကြီး ဖြစ်သွားမယ် */
+    transform: translateY(-200px);
+    height: 400px;
     z-index: 5;
 }
 
-/* Wax Seal */
 .wax-seal {
     position: absolute;
-    top: 80px;
-    left: 125px;
-    width: 50px;
+    top: 85px;
+    left: 135px;
+    width: 55px;
     z-index: 10;
     cursor: pointer;
-    transition: opacity 0.5s;
+    transition: opacity 0.4s;
 }
 
-.open .wax-seal { opacity: 0; pointer-events: none; }
-
-/* မြန်မာစာနဲ့ Design စာသားများ */
-.names { font-size: 1.5rem; color: #a12c2c; margin: 5px 0; }
-.map-btn { font-size: 0.8rem; text-decoration: none; color: blue; }
+.open .wax-seal {
+    opacity: 0;
+    pointer-events: none;
+}
